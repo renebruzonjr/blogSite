@@ -1,0 +1,30 @@
+<% include ./partials/header %>
+
+   <div class="ui large header"><%= blog.title %></div>
+   <div class="ui top attached">
+      <div class="item">
+         <img class="ui centered rounded image" src="<%= blog.image %>">
+         <br>
+         <div class="content">
+            <span><%= blog.created.toDateString() %></span>
+         </div>
+         <br>
+         <div class="content">
+            <span>by <%= blog.author.username %></span>
+         </div>
+         <br>
+         <div class="description">
+            <p><%- blog.post %></p>
+         </div>
+         <br>
+         <% if(user && blog.author.id.equals(user._id)) { %>
+            <a class="ui green button" href="/<%= blog._id %>/edit">EDIT</a>
+            <form id="delete" action="/<%= blog._id %>?_method=DELETE" method="POST">
+               <button class="ui blue button">DELETE</button>
+            </form>
+         <% } %>
+      </div>
+   </div>
+</div>
+
+<% include ./partials/footer %>

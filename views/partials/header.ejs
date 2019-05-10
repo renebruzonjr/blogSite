@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Blogs</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" type="text/css" rel="stylesheet">
+      <link type="text/css" rel="stylesheet" href="/stylesheets/app.css">
+   </head>
+   <body>
+      <div class="ui fixed inverted menu">
+         <div class="ui container">
+            <a href="/" class="item"><i class="pencil icon"></i>BLOGS</a>
+            <% if(!user) { %>
+               <a href="/login" class="item">LOGIN</a>
+               <a href="/register" class="item">REGISTER</a>
+            <% } else { %>
+               <a href="/new" class="item">NEW</a>
+               <a href="/archived" class="item">OLD</a>
+               <a href="/logout" class="item">LOGOUT</a>
+            <% } %>
+         </div>
+      </div>
+      <div class="ui main text container segment">
+      <% if (green && green.length > 0) { %>
+         <div id="flash" class="ui container">
+            <div class="ui green message">
+               <%= green %>
+            </div>
+         </div>
+      <% } %>
+      <% if (red && red.length > 0) { %>
+         <div id="flash" class="ui container">
+            <div class="ui red message">
+               <%= red %>
+            </div>
+         </div>
+      <% } %>
