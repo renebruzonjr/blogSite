@@ -38,11 +38,11 @@ router.post("/register", function(req, res) {
   });
   User.register(newUser, req.body.password, function(err, user) {
     if (err) {
-      req.flash("red", err.message);
+      req.flash("error", err.message);
       return res.redirect("/register");
     }
     passport.authenticate("local")(req, res, function() {
-      req.flash("green", "Yay! You are registered.");
+      req.flash("success", "Yay! You are registered.");
       res.redirect("/");
     });
   });
@@ -52,11 +52,10 @@ router.get("/login", function(req, res) {
   res.render("login");
 });
 
-router.post(
-  "/login",
-  passport.authenticate("local", {
+router.post("/login", passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/login"
+    failureRedirect: "/login",
+    failureFlash: true
   }),
   function(req, res) {}
 );
@@ -70,7 +69,7 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  req.flash("red", "You must be logged in to do that!");
+  req.flash("error", "You must be logged in to do that!");
   res.redirect("/login");
 }
 

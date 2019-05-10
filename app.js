@@ -39,8 +39,8 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 app.use(function(req, res, next) {
   res.locals.user = req.user;
-  res.locals.green = req.flash("green");
-  res.locals.red = req.flash("red");
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
   next();
 });
 

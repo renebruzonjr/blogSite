@@ -20,7 +20,7 @@ router.post("/", isLoggedIn, function(req, res) {
       console.log(err);
       res.render("new");
     } else {
-      req.flash("green", "Your new post is live!");
+      req.flash("success", "Your new post is live!");
       res.redirect("/");
     }
   });
@@ -53,7 +53,7 @@ router.put("/:id", checkOwner, function(req, res) {
       console.log(err);
       res.redirect("/");
     } else {
-      req.flash("green", "Your post has been updated.");
+      req.flash("success", "Your post has been updated.");
       res.redirect("/" + req.params.id);
     }
   });
@@ -65,7 +65,7 @@ router.delete("/:id", checkOwner, function(req, res) {
       console.log(err);
       res.redirect("/");
     } else {
-      req.flash("green", "Your post has been deleted.");
+      req.flash("success", "Your post has been deleted.");
       res.redirect("/");
     }
   });
@@ -75,7 +75,7 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  req.flash("red", "You must be logged in to do that!");
+  req.flash("error", "You must be logged in to do that!");
   res.redirect("/login");
 }
 
@@ -89,13 +89,13 @@ function checkOwner(req, res, next) {
         if (foundBlog.author.id.equals(req.user._id)) {
           next();
         } else {
-          req.flash("red", "You do not own this post!");
+          req.flash("error", "You do not own this post!");
           res.redirect("back");
         }
       }
     });
   } else {
-    req.flash("red", "You must be logged in to do that!");
+    req.flash("error", "You must be logged in to do that!");
     res.redirect("back");
   }
 }
