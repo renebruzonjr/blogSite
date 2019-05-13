@@ -4,7 +4,8 @@
   "description": "A blogging platform with individual accounts.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "Rene Bruzon",
   "license": "MIT",

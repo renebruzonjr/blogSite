@@ -1,16 +1,17 @@
 var LocalStrategy = require("passport-local"),
-  sanitizer       = require("express-sanitizer"),
-  method          = require("method-override"),
-  flash           = require("connect-flash"),
-  parser          = require("body-parser"),
-  mongoose        = require("mongoose"),
-  passport        = require("passport"),
-  express         = require("express"),
-  User            = require("./models/user"),
-  Blog            = require("./models/blog"),
-  indexRoutes     = require("./routes/index"),
-  blogRoutes      = require("./routes/blog"),
-  app             = express();
+  sanitizer = require("express-sanitizer"),
+  method = require("method-override"),
+  flash = require("connect-flash"),
+  parser = require("body-parser"),
+  mongoose = require("mongoose"),
+  passport = require("passport"),
+  express = require("express"),
+  User = require("./models/user"),
+  Blog = require("./models/blog"),
+  indexRoutes = require("./routes/index"),
+  blogRoutes = require("./routes/blog"),
+  port = process.env.PORT || 3000,
+  app = express();
 
 mongoose.connect("mongodb+srv://rbbjr1992:kc6km922@testcluster-rpv9l.mongodb.net/test?retryWrites=true", {
     useCreateIndex: true,
@@ -47,6 +48,6 @@ app.use(function(req, res, next) {
 app.use(indexRoutes);
 app.use(blogRoutes);
   
-app.listen("3000", function() {
+app.listen(port, function() {
    console.log("Server On.");
 });
